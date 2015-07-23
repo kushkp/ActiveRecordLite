@@ -31,7 +31,6 @@ class HasManyOptions < AssocOptions
   def initialize(name, self_class_name, options = {})
     self.foreign_key = options[:foreign_key] ||
       "#{self_class_name}_id".downcase.to_sym
-      # byebug
     self.class_name = options[:class_name] || "#{name}".singularize.capitalize
     self.primary_key = options[:primary_key] || :id
   end
@@ -39,8 +38,11 @@ end
 
 module Associatable
   # Phase IIIb
+
+  # OLD BELONGS_TO
   def belongs_to(name, options = {})
     options = BelongsToOptions.new(name, options)
+    assoc_options[name] = options
 
     define_method(name) do
       fk = send(options.foreign_key)
@@ -81,7 +83,7 @@ module Associatable
   end
 
   def assoc_options
-    # Wait to implement this in Phase IVa. Modify `belongs_to`, too.
+    @assoc_options ||= {}
   end
 end
 
