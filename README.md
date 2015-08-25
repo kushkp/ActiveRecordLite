@@ -15,6 +15,8 @@ Uses extend to allow us to mix in Searchable to our SQLObject class, adding all 
 
 ##Phase 3: Associatable
 
-
+Belongs_to and has_many defined using an Associatable module, that we mix into SQLObject.
 
 ##Phase 4: Has_one_through
+
+Implements has_one_through, which is a comination of two belongs_to associations.
