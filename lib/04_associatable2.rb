@@ -31,10 +31,8 @@ module Associatable
           a.#{source_fk} = b.#{source_pk}
         WHERE
           a.#{through_pk} = #{through_fk_val};
-
-
       SQL
-      # results.find { |result| result.source }
+
       return_object = results.map { |attributes| source_cn.new(attributes) }
       return_object.first
     end
